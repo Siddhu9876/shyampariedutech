@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Teacher } from '../../types';
 import { Link } from 'react-router-dom';
-import { BookOpen, PlusCircle, Edit, Eye, Menu, X, Home, Users, Briefcase, Building, Info, MessageSquare } from 'lucide-react';
+import { BookOpen, PlusCircle, Edit, Eye, Menu, X, Home, Users, Building, Info, MessageSquare } from 'lucide-react';
+import ProfileModal from '../common/ProfileModal';
 
 // Mock data - replace with actual data when available
 const mockCourses: any[] = [];
@@ -12,12 +13,12 @@ const CoursesPage: React.FC = () => {
   const { user } = useAuth();
   const teacher = user as Teacher;
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const navigationItems = [
     { name: 'Home', icon: Home, path: '/dashboard' },
     { name: 'Students', icon: Users, path: '/students' },
     { name: 'Courses', icon: BookOpen, path: '/courses' },
-    { name: 'My Tutors', icon: Briefcase, path: '/mytutors' },
     { name: 'Messages', icon: MessageSquare, path: '/messages' },
     { name: 'Organization', icon: Building, path: '/organization' },
     { name: 'AboutPage', icon: Info, path: '/about' },
@@ -61,8 +62,11 @@ const CoursesPage: React.FC = () => {
           </div>
         </nav>
 
-        {/* Teacher Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+        {/* Teacher Info (Profile Button) */}
+        <button
+          onClick={() => setIsProfileOpen(true)}
+          className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 text-left hover:bg-gray-50"
+        >
           <div className="flex items-center">
             <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-medium">
@@ -74,7 +78,8 @@ const CoursesPage: React.FC = () => {
               <p className="text-xs text-gray-500">Teacher ID: {teacher.teacherId}</p>
             </div>
           </div>
-        </div>
+          <p className="mt-2 text-xs text-gray-500">View Profile</p>
+        </button>
       </div>
 
       {/* Main Content */}
@@ -153,6 +158,7 @@ const CoursesPage: React.FC = () => {
           onClick={() => setSidebarOpen(false)}
         />
       )}
+      <ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} user={teacher} />
     </div>
   );
 };

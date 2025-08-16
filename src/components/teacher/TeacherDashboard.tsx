@@ -32,7 +32,6 @@ const TeacherDashboard: React.FC = () => {
     { name: 'Home', path: '/dashboard', icon: Home },
     { name: 'Students', path: '/students', icon: Users },
     { name: 'Courses', path: '/courses', icon: BookOpen }, 
-    { name: 'My Tutors', path: '/mytutors', icon: Briefcase },
     { name: 'Messages', path: '/messages', icon: MessageSquare }, 
     { name: 'Organization', path: '/organization', icon: Building },
     { name: 'AboutPage', path: '/about', icon: Info },

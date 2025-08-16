@@ -13,11 +13,13 @@ import AboutUsPage from './components/student/AboutUsPage';
 import SideBar from './components/teacher/SideBar';
 import StudentsPage from './components/teacher/Students';
 import CoursesPage from './components/teacher/Courses';
-import MyTutorsPage from './components/teacher/MyTutors';
+import ProfileModal from './components/common/ProfileModal';
 import MessagesPage from './components/teacher/Messages';
 import OrganizationPage from './components/teacher/Organization';
 import AboutPage from './components/teacher/About';
 import ChatbotWidget from './components/common/ChatbotWidget';
+import CompleteProfile from './components/common/completeprofile';
+
 
 
 
@@ -50,11 +52,12 @@ const AppRoutes: React.FC = () => (
     <Route path="/sidebar" element={<ProtectedRoute><SideBar navItems={[]} /></ProtectedRoute>} />
     <Route path="/students" element={<ProtectedRoute><StudentsPage /></ProtectedRoute>} />
     <Route path="/courses" element={<ProtectedRoute><CoursesPage /></ProtectedRoute>} />
-    <Route path="/mytutors" element={<ProtectedRoute><MyTutorsPage /></ProtectedRoute>} />
     <Route path="/messages" element={<ProtectedRoute><MessagesPage /></ProtectedRoute>} />
     <Route path="/organization" element={<ProtectedRoute><OrganizationPage /></ProtectedRoute>} />
     <Route path="/about" element={<ProtectedRoute><AboutPage /></ProtectedRoute>} />
+    <Route path="/profile" element={<ProtectedRoute><ProfileModal /></ProtectedRoute>} />
     <Route path="/chatbot" element={<ChatbotWidget />} />
+    <Route path="/completeprofile" element={<ProtectedRoute><CompleteProfile /></ProtectedRoute>} />
 
     {/* Teacher Routes */}
     <Route path="/teacher-dashboard" element={<ProtectedRoute><TeacherDashboard /></ProtectedRoute>} />

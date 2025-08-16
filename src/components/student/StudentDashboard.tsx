@@ -4,6 +4,7 @@ import { mockAssignments, mockTests, mockAttendance } from '../../data/mockData'
 import { Student } from '../../types';
 import { Link } from 'react-router-dom';
 import ChatbotWidget from '../common/ChatbotWidget';
+import ProfileModal from '../common/ProfileModal';
 import { 
   Calendar, 
   FileText, 
@@ -25,6 +26,7 @@ const StudentDashboard: React.FC = () => {
   const { user } = useAuth();
   const student = user as Student;
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   // Mock attendance calculation
   const calculateAttendance = (subject: string) => {
@@ -77,8 +79,11 @@ const StudentDashboard: React.FC = () => {
           </div>
         </nav>
 
-        {/* Student Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+        {/* Student Info (Profile Button) */}
+        <button
+          onClick={() => setIsProfileOpen(true)}
+          className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 text-left hover:bg-gray-50"
+        >
           <div className="flex items-center">
             <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
               <span className="text-white text-sm font-medium">
@@ -90,7 +95,8 @@ const StudentDashboard: React.FC = () => {
               <p className="text-xs text-gray-500">{student.class} - {student.section}</p>
             </div>
           </div>
-        </div>
+          <p className="mt-2 text-xs text-gray-500">View Profile</p>
+        </button>
       </div>
 
       {/* Main Content */}
@@ -271,6 +277,7 @@ const StudentDashboard: React.FC = () => {
         />
       )}
       <ChatbotWidget />
+      <ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} user={student} />
     </div>
   );
 };

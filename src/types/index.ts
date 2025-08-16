@@ -4,6 +4,7 @@ export interface User {
   email: string;
   role: 'student' | 'teacher';
   profilePicture?: string;
+  phoneNumber?: string;
 }
 
 export interface Student extends User {
